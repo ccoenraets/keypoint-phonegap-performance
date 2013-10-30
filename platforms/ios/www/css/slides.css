@@ -1,0 +1,34 @@
+#spinner {
+    width: 100%;
+    padding-top: 40px;
+    text-align: center;
+}
+
+.page {
+    padding-top: 10px;
+    position: absolute;
+    width: 279px;
+    height:467px;
+    top:128px;
+    left:372px;
+    transform: translate3d(0,0,0);
+}
+
+.page-left {
+    -webkit-transform: translate3d(-300px, 0, 0);
+    transform: translate3d(-301px, 0, 0);
+}
+.page-center {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+.page-right {
+    -webkit-transform: translate3d(301px, 0, 0);
+    transform: translate3d(300px, 0, 0);
+}
+
+.transition {
+    -webkit-transition-duration: .25s;
+    transition-duration: .25s;
+}
+

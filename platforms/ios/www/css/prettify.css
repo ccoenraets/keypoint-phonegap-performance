@@ -1,0 +1,172 @@
+.pln {
+    color: #812A8D;
+}
+
+@media screen {
+    /* string content */
+    .str {
+        color: #389205;
+    }
+
+    /* a keyword */
+    .kwd {
+        color: #162494;
+    }
+
+    /* a comment */
+    .com {
+        color: #999999;
+    }
+
+    /* a type name */
+    .typ {
+        color: #709B99;
+    }
+
+    /* a literal value */
+    .lit {
+        color: #f99157;
+    }
+
+    /* punctuation */
+    .pun {
+        color: #222;
+    }
+
+    /* lisp open bracket */
+    .opn {
+        color: #cccccc;
+    }
+
+    /* lisp close bracket */
+    .clo {
+        color: #cccccc;
+    }
+
+    /* a markup tag name */
+    .tag {
+        color: #011892;
+    }
+
+    /* a markup attribute name */
+    .atn {
+        color: #123CFF;
+    }
+
+    /* a markup attribute value */
+    .atv {
+        color: #399406;
+    }
+
+    /* a declaration */
+    .dec {
+        color: #f99157;
+    }
+
+    /* a variable name */
+    .var {
+        color: #f2777a;
+    }
+
+    /* a function name */
+    .fun {
+        color: #6699cc;
+    }
+}
+
+/* Use higher contrast and text-weight for printable form. */
+@media print, projection {
+    .str {
+        color: #006600;
+    }
+
+    .kwd {
+        color: #006;
+        font-weight: bold;
+    }
+
+    .com {
+        color: #600;
+        font-style: italic;
+    }
+
+    .typ {
+        color: #404;
+        font-weight: bold;
+    }
+
+    .lit {
+        color: #004444;
+    }
+
+    .pun, .opn, .clo {
+        color: #444400;
+    }
+
+    .tag {
+        color: #006;
+        font-weight: bold;
+    }
+
+    .atn {
+        color: #440044;
+    }
+
+    .atv {
+        color: #006600;
+    }
+}
+
+/* Style */
+xmp.prettyprint,
+pre.prettyprint {
+    font-family: "Source Code", monospace;
+    font-size: 28px;
+    text-align: left;
+    display: inline-block;
+    margin: 0px;
+}
+
+xmp.large,
+pre.large {
+    font-size: 38px;
+}
+
+xmp.small,
+pre.small {
+    font-size: 22px;
+}
+
+xmp.xsmall,
+pre.xsmall {
+    font-size: 18px;
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+    /* */
+}
+
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+    /* */
+}

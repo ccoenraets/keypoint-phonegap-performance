@@ -1,0 +1,296 @@
+@font-face {
+    font-family: "Source Code";
+    src: url("../topcoat/font/SourceCodePro-Regular.otf");
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: #fff;
+    font-size: 36px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1,
+h2 {
+    color: #222;
+}
+
+h1 {
+    padding-bottom: 30px;
+    margin: 0;
+    font-weight: 500;
+    font-size: 56px;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 48px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    border: solid 1px #aaa;
+    width: 250px;
+    padding: 16px;
+}
+
+#wrapper {
+    width: 100%;
+    min-width: 320px;
+    height: 100%;
+}
+
+#swipeview-slider > div {
+    position: relative;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: -o-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -ms-box-orient: vertical;
+    -o-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-box-pack: center;
+    -o-box-pack: center;
+    box-pack: center;
+    -webkit-box-align: center;
+    -mox-box-align: center;
+    -ms-box-align: center;
+    -o-box-align: center;
+    box-align: center;
+    overflow: hidden;
+}
+
+#slides {
+    display: none;
+}
+
+#audience-pic {
+    width: 720px;
+    height: 540px;
+    border: solid 16px #efefef;
+    display: block;
+    margin: 0px 0px 10px 0px;
+}
+
+.icon--camera {
+    background: url("img/camera.svg") no-repeat;
+    background-size: cover;
+}
+
+.icon--github {
+    background: url("img/github.svg") no-repeat;
+    background-size: cover;
+    height: 48px;
+    width: 48px;
+    margin-right: 1rem;
+}
+
+.icon--rss {
+    background: url("img/rss.svg") no-repeat;
+    background-size: cover;
+    height: 48px;
+    width: 48px;
+    margin-right: 1rem;
+}
+
+.icon--twitter {
+    background: url("img/twitter.svg") no-repeat;
+    background-size: cover;
+    height: 48px;
+    width: 48px;
+    margin-right: 1rem;
+}
+
+.icon--location {
+    background: url("img/location.svg") no-repeat;
+    background-size: cover;
+    height: 48px;
+    width: 48px;
+    margin-right: 1rem;
+}
+
+.icon--user {
+    background: url("img/user.svg") no-repeat;
+    background-size: cover;
+    height: 48px;
+    width: 48px;
+    margin-right: 1rem;
+}
+
+.slide {
+    text-align: center;
+}
+
+.slide ul,
+.slide ol {
+    text-align: left;
+}
+
+.slide li {
+    padding-bottom: 20px;
+}
+
+.slide.summary li {
+    padding-bottom: 8px;
+}
+
+img.full {
+    max-width: 900px;
+    max-height: 600px;
+    margin-top: 20px;
+}
+
+.topcoat-spinner,
+#wrapper > div > .swipeview-loading {
+    background: url("img/spinner.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-animation: spinner 1s infinite linear;
+    height: 36px;
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+#wrapper > div > .swipeview-loading .slide {
+    opacity: 0;
+}
+
+#menu {
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: -251px;
+    width: 250px;
+    font-size: 1rem;
+    border-right: solid 1px #888;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    background: #484B4C;
+    display: flex;
+    flex-direction: column;
+    display: -webkit-box; /* iOS */
+    -webkit-box-orient: vertical; /* iOS */
+}
+
+#menu .header {
+    height: 64px;
+    padding: 8px;
+    border-bottom: solid 1px #888;
+    color: #ffffff;
+    font-size: 24px;
+}
+
+#menu .header > img {
+    width: 57px;
+    height: 57px;
+    float: left;
+}
+
+#menu .title {
+    padding: 30px 0px;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+#menu-btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
+#menu.visible {
+    -webkit-transform: translate3d(250px, 0, 0);
+    transform: translate3d(250px, 0, 0);
+}
+
+#logo {
+    /*z-index: 10;*/
+    position: absolute;
+    right: 50px;
+    height: 80px;
+}
+
+.scroller {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    background: #DFE2E2;
+    border-top: solid 1px #BFC2C2;
+    flex: 1;
+    -webkit-box-flex: 1; /* iOS */
+}
+
+.scroller > ol {
+    list-style-position: inside;
+}
+
+.scroller > ol > li {
+    padding: 0px 0px 0px 0px;
+    margin-left: 0px;
+}
+
+.scroller > ol > li > a {
+    display: block;
+    padding: 16px;
+}
+
+.topcoat-list li:active {
+    background-color: #ddd;
+}
+
+.grid {
+    display: flex;
+    display: -webkit-box;
+    width: 900px;
+}
+
+.grid-cell {
+    border: solid 1px #666;
+    flex: 1;
+    -webkit-box-flex: 1;
+    margin: 10px 4px;
+    padding: 28px 4px;
+}
+
+.count {
+    font-size: 144px;
+}
+
+.topcoat-list a {
+    display: block;
+    padding:16px;
+}
+
+.topcoat-list li {
+    padding:0px;
+}

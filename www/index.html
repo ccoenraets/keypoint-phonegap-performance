@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Keypoint: PhoneGap + Backbone</title>
+    <link href="topcoat/css/topcoat-mobile-light.css" rel="stylesheet" type="text/css">
+    <link href="css/keypoint.css" rel="stylesheet" type="text/css">
+    <link href="css/prettify.css" rel="stylesheet" type="text/css">
+    <link href="css/slides.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-721308-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+
+<body>
+
+<img id="logo" src="images/adobe.svg"/>
+
+<div id="wrapper"></div>
+
+<div id="slides">
+
+<div class="slide" style="background: url('images/gauge2.jpg');background-repeat:no-repeat;background-size:cover;width: 100%;height: 100%;"></div>
+
+<div class="slide">
+    <h1>Me</h1>
+    <div style="text-align: left">
+        <p><span class="topcoat-icon icon--user"></span>Christophe Coenraets</p>
+        <p><span class="topcoat-icon icon--location"></span>Boston, MA</p>
+        <p><span class="topcoat-icon icon--twitter"></span>@ccoenraets</p>
+        <p><span class="topcoat-icon icon--rss"></span>http://coenraets.org</p>
+        <p><span class="topcoat-icon icon--github"></span>https://github.com/ccoenraets</p>
+    </div>
+</div>
+
+<div class="slide">
+    <h1 style="padding-bottom: 10px;">You</h1>
+    <img id="audience-pic"/>
+    <button class="topcoat-button picture-btn"><span class="topcoat-icon icon--camera"></span></button>
+</div>
+
+<div class="slide">
+<h1>Slow</h1>
+<img src="images/geometrixx.jpg" height="500"/><br/>
+<xmp class="prettyprint">
+<a href="product.php?id=101">Tuareg Summer</a>
+</xmp>
+</div>
+
+<div class="slide">
+    <h1>Slow</h1>
+<pre class="prettyprint">
+$.get("product.php?id=101").done(function(page) {
+    $("body").html(page);
+});
+</pre>
+    <h2>[jQuery Mobile Hijax]</h2>
+</div>
+
+<div class="slide green">
+    <div class="count">#10</div>
+    <h1>Don't generate the UI on the server</h1>
+</div>
+
+
+<div class="slide">
+    <h1>Fast</h1>
+    <ul>
+        <li>Create the UI in JavaScript at the client-side</li>
+        <li>Insert/remove views into/from the DOM as needed</li>
+    </ul>
+</div>
+
+<div class="slide">
+<h1>Single Page Application</h1>
+<xmp class="prettyprint large">
+    <html>
+    <head>
+        <title>My App</title>
+        <script src="app.js"></script>
+    </head>
+    <body></body>
+    </html>
+</xmp>
+</div>
+
+<div class="slide">
+    <h1>Slow</h1>
+    <div id="spinner"><div class="topcoat-spinner"></div></div>
+    <h2>[Network Access]</h2>
+</div>
+
+<div class="slide">
+    <h1>Slow</h1>
+<pre class="prettyprint">
+$.ajax({url: "services/states"}).done(function(data) {
+    states = data;
+});
+</pre>
+    <p><img src="images/state-list.jpg"/></p>
+</div>
+
+<div class="slide">
+    <div class="count">#9</div>
+    <h1>Avoid Network Access</h1>
+</div>
+
+<div class="slide">
+    <h1>Cache Static Data</h1>
+    <ul>
+        <li>LocalStorage</li>
+        <li>Database</li>
+        <li>File</li>
+    </ul>
+</div>
+
+<div class="slide">
+    <h1>Cache Dynamic Data</h1>
+    <div>
+<pre class="prettyprint">
+<span style="text-decoration: line-through">
+$.ajax({url: "slow/feed"}).done(function(data) {
+
+});
+</span>
+
+dataAdapter.getItems().done(function(data) {
+
+});
+</pre>
+    </div>
+</div>
+
+<div class="slide">
+<h1>Limit Result Set Height</h1>
+<h2>/movies/46637/comments?lastId=100</h2>
+</div>
+
+<div class="slide">
+    <h1>Limit Result Set Width</h1>
+</div>
+
+<div class="slide">
+    <h1>Slow</h1>
+<pre class="prettyprint">
+// Get data
+$.ajax({url: "product/101"}).done(function(product) {
+    // Display view
+    displayView(product);
+});
+</pre>
+</div>
+
+<div class="slide">
+    <div class="count">#8</div>
+    <h1>Don't wait for the data to display the UI</h1>
+</div>
+
+<div class="slide">
+    <h1>Fast</h1>
+<pre class="prettyprint">
+// Display view
+displayView();
+
+// Get data
+$.ajax({url: "product/101"}).done(function(product) {
+    // Update view
+});
+</pre>
+</div>
+
+<div class="slide">
+    <h1>Slow</h1>
+<pre class="prettyprint">
+$("#page").animate();
+</pre>
+</div>
+
+<div class="slide">
+    <div class="count">#7</div>
+    <h1>Use CSS Transitions<br/>+<br/>Hardware Acceleration</h1>
+</div>
+
+<div class="slide">
+    <div style="position:relative; width: 1024px; height: 600px;">
+        <img id="phone" src="images/iphone5.png" style="position: absolute;left:349px;top:0px;width: 326px;"/>
+        <div id="pageA" class="page page-left" style="background-color:red">
+            <a class="topcoat-button" onclick="javascript:slide('pageA', 'page-left')">Left</a>
+            <a class="topcoat-button" onclick="javascript:slide('pageA', 'page-center')">Center</a>
+            <a class="topcoat-button" onclick="javascript:slide('pageA', 'page-right')">Right</a>
+            <br/>
+            <br/>
+            <br/>
+            <span id="pageAclass">class="left"</span>
+        </div>
+        <div id="pageB" class="page page-center" style="background-color: green">
+            <a class="topcoat-button" onclick="javascript:slide('pageB', 'page-left')">Left</a>
+            <a class="topcoat-button" onclick="javascript:slide('pageB', 'page-center')">Center</a>
+            <a class="topcoat-button" onclick="javascript:slide('pageB', 'page-right')">Right</a>
+            <br/>
+            <br/>
+            <br/>
+            <span id="pageBclass">class="center"</span>
+        </div>
+        <div id="pageC" class="page page-right" style="background-color: blue">
+            <a class="topcoat-button" onclick="javascript:slide('pageC', 'page-left')">Left</a>
+            <a class="topcoat-button" onclick="javascript:slide('pageC', 'page-center')">Center</a>
+            <a class="topcoat-button" onclick="javascript:slide('pageC', 'page-right')">Right</a>
+            <br/>
+            <br/>
+            <br/>
+            <span id="pageCclass">class="right"</span>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+<h1>Slow</h1>
+<xmp class="prettyprint small">
+.page {
+    position: absolute;top: 0;left: 0;width: 100%;height: 100%;
+}
+.left {
+    left: -100%;
+}
+.center {
+    left: 0;
+}
+.right {
+    left: 100%;
+}
+.transition {
+    transition-duration: .25s;
+}
+</xmp>
+</div>
+
+
+<div class="slide">
+    <h1>Fast</h1>
+<pre class="prettyprint small">
+.page {
+    position: absolute;top: 0;left: 0;width: 100%;height: 100%;
+    transform: translate3d(0, 0, 0);
+}
+.left {
+    transform: translate3d(-100%, 0, 0);
+}
+.center {
+    transform: translate3d(0, 0, 0);
+}
+.right {
+    transform: translate3d(100%, 0, 0);
+}
+.transition {
+    transition-duration: .25s;
+}
+</pre>
+</div>
+
+<div class="slide">
+    <h1>PageSlider</h1>
+    https://github.com/ccoenraets/PageSlider
+</div>
+
+<div class="slide">
+<h1>Use Native Scrolling</h1>
+<xmp class="prettyprint">
+#scroller {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    top: 48px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+</xmp>
+</div>
+
+<div class="slide">
+    <h1>Slow</h1>
+    <ul class="topcoat-list" style="width: 400px;margin: auto;">
+        <li class="topcoat-list__item"><a href="#" class="needsclick">Item 1</a></li>
+        <li class="topcoat-list__item"><a href="#" class="needsclick">Item 2</a></li>
+        <li class="topcoat-list__item"><a href="#" class="needsclick">Item 3</a></li>
+    </ul>
+    <p><a class="topcoat-button--large slow-btn needsclick" href="#">Click Me</a></p>
+    <div id="log-slow" style="margin-top:20px;">click: 0ms</div>
+    <p style="font-size: 24px; color: #999;">To experience the 300ms delay, tap quickly (don't "long-tap")</p>
+</div>
+
+<div class="slide">
+    <div class="count">#6</div>
+    <h1>Avoid Click Event's 300ms Delay</h1>
+</div>
+
+<div class="slide">
+    <h1>Fast</h1>
+    <ul class="topcoat-list" style="width: 400px;">
+        <li class="topcoat-list__item"><a href="#" class="fastclick">Item 1</a></li>
+        <li class="topcoat-list__item"><a href="#" class="fastclick">Item 2</a></li>
+        <li class="topcoat-list__item"><a href="#" class="fastclick">Item 3</a></li>
+    </ul>
+    <p><a class="topcoat-button--large slow-btn fastclick" href="#">Click Me</a></p>
+    <div id="log-fast" class="log" style="margin-top:20px;">touch end: 0ms</div>
+</div>
+
+<div class="slide">
+    <h1>FastClick</h1>
+    <h2><a href="https://github.com/ftlabs/fastclick" target="_system">https://github.com/ftlabs/fastclick</a></h2>
+    <p style="padding: 0 60px;">“FastClick uses document.createEvent to fire a synthetic click event as soon as touchend is fired. It then suppresses the additional click event created by the browser.”</p>
+</div>
+
+
+<div class="slide">
+    <h1>Slow</h1>
+<pre class="prettyprint">
+&lt;li>&lt;img src="img/icon_home.png"/>Call Home&lt;/li>
+&lt;li>&lt;img src="img/icon_office.png"/>Call Office&lt;/li>
+&lt;li>&lt;img src="img/icon_cell.png"/>Call Cell&lt;/li>
+&lt;li>&lt;img src="img/icon_email.png"/>Email&lt;/li>
+&lt;li>&lt;img src="img/icon_sms.png"/>Text&lt;/li>
+&lt;li>&lt;img src="img/icon_map.png"/>Map&lt;/li>
+&lt;li>&lt;img src="img/icon_contact.png"/>Add Contact&lt;/li>
+</pre>
+</div>
+
+
+<div class="slide">
+    <div class="count">#5</div>
+    <h1>Optimize Images</h1>
+</div>
+
+<div class="slide">
+    <h1>Use CSS Sprite Sheets</h1>
+    <img src="images/glyphicons-halflings.png"/>
+    <h2>glyphicons-halflings.png</h2>
+</div>
+
+<div class="slide">
+    <h1>Use CSS Sprite Sheets</h1>
+<pre class="prettyprint">
+.icon {
+  width: 14px; height: 14px;
+  background-image: url("glyphicons-halflings.png");
+}
+.icon-glass {
+  background-position: 0 0;
+}
+.icon-music {
+  background-position: -24px 0;
+}
+.icon-search {
+  background-position: -48px 0;
+}
+</pre>
+</div>
+
+<div class="slide">
+    <h1>Demo</h1>
+    <p><img src="images/spritesheet.jpg" style="padding:16px;background-color:white;"></p>
+</div>
+
+<div class="slide">
+    <h1>Optimizing Images</h1>
+    <ul>
+        <li>Use the right image size (don't scale images in HTML)</li>
+        <li>Host images on scalable, distributed systems (i.e. S3)</li>
+        <li>Avoid 404s for images</li>
+<xmp class="prettyprint" style="text-decoration: line-through">
+<img src="{{pic}}" onerror='this.src="nopic.jpg"'/>
+</xmp>
+    </ul>
+</div>
+
+
+
+<div class="slide">
+    <div class="count">#4</div>
+    <h1>Limit Shadows and Gradients</h1>
+</div>
+
+<div class="slide">
+    <ul>
+        <li>box-shadow</li>
+        <li>border-radius</li>
+        <li>gradients</li>
+        <li>text-align</li>
+    </ul>
+</div>
+
+
+<div class="slide">
+    <div class="count">#3</div>
+    <h1>Minimize Reflows</h1>
+</div>
+
+<div class="slide">
+    <h1>Minimizing Browser Reflows</h1>
+    <ul>
+        <li>Reduce the number of DOM elements</li>
+        <li>Minimize access to the DOM</li>
+        <li>Update elements "offline" before reinserting into DOM</li>
+        <li>Avoid tweaking layout in JavaScript</li>
+    </ul>
+</div>
+
+<div class="slide">
+<h1>Slow</h1>
+<pre class="prettyprint">
+$("#header a.back").on("click", clickHandler);
+$("#header a.back").css("color", "white");
+$("#header a.back").css("text-decoration", "none");
+$("#header a.back").attr("href", "#");
+</pre>
+</div>
+
+<div class="slide">
+<h1>Fast</h1>
+<pre class="prettyprint">
+var $backButton = $("#header a.back");
+$backButton.on("click", clickHandler);
+$backButton.css("color", "white");
+$backButton.css("text-decoration", "none");
+$backButton.attr("href", "#");
+</pre>
+</div>
+
+<div class="slide">
+    <div class="count">#2</div>
+    <h1>Do you need that framework?</h1>
+</div>
+
+<div class="slide">
+    <h1>Framework Considerations</h1>
+    <ul style="padding: 0 60px;">
+        <li>Don't use a full-stack framework just because you like a small piece of it (i.e. transitions our UI components)</li>
+        <li>Understand the performance characteristics of libraries you use</li>
+    </ul>
+</div>
+
+<div class="slide">
+    <div class="count">#1</div>
+    <h1>TEST!</h1>
+    <h1>[Know the Problem]</h1>
+</div>
+
+<div class="slide">
+    <h1>Chrome Dev Tools Demo</h1>
+    <img src="images/timeline.jpg" class="full"/>
+</div>
+
+<div class="slide">
+    <h1>Chrome Dev Tools Demo</h1>
+    <img src="images/dev-tools.jpg"/>
+</div>
+
+<div class="slide">
+    <h1>On-Device Debugging Demo</h1>
+    <img src="images/safari.png" height="500"/>
+</div>
+
+<div class="slide summary">
+    <h1>Summary</h1>
+    <ol reversed>
+        <li>Don't generate the UI on the server</li>
+        <li>Limit network access</li>
+        <li>Don't wait for the data to display the UI</li>
+        <li>Use hardware acceleration</li>
+        <li>Avoid click event's 300ms delay</li>
+        <li>Optimize images</li>
+        <li>Limit shadows and gradients</li>
+        <li>Do you need that framework?</li>
+        <li>Minimize browser reflows</li>
+        <li>Test</li>
+    </ol>
+</div>
+
+</div> <!-- end of '#slides' -->
+
+<a id="menu-btn" class="topcoat-icon-button--quiet">
+    <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+</a>
+
+<div id="menu">
+    <div class="header">
+        <img src="css/img/keypoint.png"/>
+        <div class="title">Keypoint</div>
+    </div>
+    <div class="topcoat-list__container scroller cf">
+        <ol id="list" class="topcoat-list"></ol>
+    </div>
+</div>
+
+<script src="cordova.js"></script>
+<script src="lib/fastclick.js"></script>
+<script src="lib/prettify.js"></script>
+<script src="lib/swipeview.js"></script>
+<script src="lib/jquery.js"></script>
+<script src="js/keypoint.js"></script>
+<script src="js/slides.js"></script>
+</body>
+</html>
